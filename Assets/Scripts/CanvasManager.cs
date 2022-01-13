@@ -4,12 +4,14 @@ using UnityEngine;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.Video;
+using UnityEngine.Windows;
 
 public class CanvasManager : MonoBehaviour
 {
     public GameObject panelToShowNFTs;
     private RestManager _restManager;
-    private NFT _nft;
+    private INFT _nft;
 
 
     void Start()
@@ -35,22 +37,35 @@ public class CanvasManager : MonoBehaviour
         Debug.Log("OBTAING ERROR " + obtaining);
     }
 
-    public void ObtainNFT(NFTData nftData)
+    public void ObtainNFT(Asset asset)
     {
-        StartCoroutine(ObtainData(nftData));
+        StartCoroutine(ObtainData(asset));
     }
 
-    public IEnumerator ObtainData(NFTData nftData)
+    public IEnumerator ObtainData(Asset nft)
     {
-        _nft = Resources.Load<NFT>("Prefabs/NFT");
+        if (nft.image_preview_url!=null)
+        {
+            UnityWebRequest request = UnityWebRequestTexture.GetTexture(nft.image_preview_url);
+            yield return request.SendWebRequest();
+            if (request.isNetworkError || request.isHttpError)
+            {
+                Debug.Log(request.error);
+                yield break;
+            }
+            if (request.downloadHandler.text.Contains("GIF"))
+                yield break;
 
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture(nftData.image_thumbnail_url);
-        yield return request.SendWebRequest();
-        if (request.isNetworkError || request.isHttpError)
-            Debug.Log(request.error);
-        else
-            nftData.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            if (request.downloadHandler.text.Contains("MP4"))
+            {
+                yield return _nft = Resources.Load<NFTVideo>("Prefabs/NFTVideo");
+                _nft.OnInstance(nft, panelToShowNFTs.transform);
+                yield break;
+            }
 
-        _nft.OnInstance(nftData, panelToShowNFTs.transform);
+            yield return nft.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            _nft = Resources.Load<NFT>("Prefabs/NFT");
+            _nft.OnInstance(nft, panelToShowNFTs.transform);
+        }
     }
 }

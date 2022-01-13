@@ -9,7 +9,6 @@ using Newtonsoft.Json;
     { 
         public RequestData Deserialize(string json)
         {
-            var result = JsonConvert.DeserializeObject<RequestData>(json);
-            return result;
+            return JsonConvert.DeserializeObject<RequestData>(json);
         }
     }

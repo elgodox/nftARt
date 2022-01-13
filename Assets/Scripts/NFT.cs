@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class NFT : MonoBehaviour
+public class NFT : MonoBehaviour, INFT
 {
-
-    public void OnInstance(NFTData nftData, Transform position)
+    public void OnInstance(Asset nft, Transform position)
     {
-        Image image = GetComponent<Image>();
-        Material material = new Material(Shader.Find("Unlit/Texture"));
-        material.name = nftData.id;
-        material.mainTexture = nftData.texture;
-        image.material = material;
+        RawImage image = GetComponent<RawImage>();
+        name = nft.id.ToString();
+        image.texture = nft.texture;
         Instantiate(this, position);
     }
 

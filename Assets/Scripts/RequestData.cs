@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 public class RequestData
 {
-    public List<NFTData> assets { get; set; }
+    public List<Asset> assets { get; set; }
 }
 
 

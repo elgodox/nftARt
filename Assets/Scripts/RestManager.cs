@@ -7,7 +7,7 @@ public class RestManager : MonoBehaviour
 {
      public Action<bool> OnObtainingData;
      public Action<bool> OnObtainError;
-     public Action<NFTData> OnObtainNFT;
+     public Action<Asset> OnObtainNFT;
 
 
     public IEnumerator GetDataFromWeb()
