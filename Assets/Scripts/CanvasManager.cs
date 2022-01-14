@@ -10,7 +10,7 @@ public class CanvasManager : MonoBehaviour
 {
     public GameObject panelToShowNFTs;
     private RestManager _restManager;
-    private INFT _nft;
+    private INFT _mockNFT;
 
 
     void Start()
@@ -43,28 +43,49 @@ public class CanvasManager : MonoBehaviour
 
     public IEnumerator ObtainData(Asset nft)
     {
-        if (nft.image_preview_url!=null)
+        yield return StartCoroutine(RequestTextureForNFT(nft));
+        yield return StartCoroutine(RequestTextureForOwnerProfile(nft));
+        if (nft.image_preview_url != null)
         {
-            UnityWebRequest request = UnityWebRequestTexture.GetTexture(nft.image_preview_url);
-            yield return request.SendWebRequest();
-            if (request.isNetworkError || request.isHttpError)
+            if (nft.texture!=default)
             {
-                Debug.Log(request.error);
-                yield break;
-            }
-            if (request.downloadHandler.text.Contains("GIF"))
-                yield break;
-
-            if (request.downloadHandler.text.Contains("MP4"))
-            {
-                yield return _nft = Resources.Load<NFTVideo>("Prefabs/NFTVideo");
-                _nft.OnInstance(nft, panelToShowNFTs.transform);
+                _mockNFT = Resources.Load<MockNFT>("Prefabs/MockNFT");
+                _mockNFT.OnInstance(nft, panelToShowNFTs.transform);
                 yield break;
             }
 
-            yield return nft.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            _nft = Resources.Load<NFT>("Prefabs/NFT");
-            _nft.OnInstance(nft, panelToShowNFTs.transform);
+        }
+    }
+
+    private IEnumerator RequestTextureForNFT(Asset nft)
+    {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(nft.image_url);
+        yield return request.SendWebRequest();
+        if(request.result == UnityWebRequest.Result.ConnectionError|| (request.result == UnityWebRequest.Result.ProtocolError))
+        {
+            Debug.Log(request.error);
+            yield break;
+        }
+        else
+        {
+            if (request.downloadHandler.text.Contains("JPG")|| request.downloadHandler.text.Contains("PNG"))
+                yield return nft.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+        }
+    }
+
+    private IEnumerator RequestTextureForOwnerProfile(Asset nft)
+    {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(nft.owner.profile_img_url);
+        yield return request.SendWebRequest();
+        if (request.result == UnityWebRequest.Result.ConnectionError || (request.result == UnityWebRequest.Result.ProtocolError))
+        {
+            Debug.Log(request.error);
+            yield break;
+        }
+        else
+        {
+            if (request.downloadHandler.text.Contains("JPG") || request.downloadHandler.text.Contains("PNG"))
+                yield return nft.owner.textureProfile = ((DownloadHandlerTexture)request.downloadHandler).texture;
         }
     }
 }

@@ -32,7 +32,6 @@ public class Asset
     public bool is_presale { get; set; }
     public object transfer_fee_payment_token { get; set; }
     public object transfer_fee { get; set; }
-    
     public Texture texture{ get; set; }
     public VideoClip video { get; set; }
 }
