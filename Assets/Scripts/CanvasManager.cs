@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using UnityEngine.Windows;
 
 public class CanvasManager : MonoBehaviour
 {
