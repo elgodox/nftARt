@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using System;
 
 public class CanvasManager : MonoBehaviour
 {
     public GameObject panelToShowNFTs;
+    public Action<bool> onShowNFTs;
+    private bool _canUpdateContent;
+    private Content _panelToShowNFTs;
     private RestManager _restManager;
     private INFT _mockNFT;
 
@@ -16,19 +20,27 @@ public class CanvasManager : MonoBehaviour
     void Start()
     {
         _restManager = FindObjectOfType<RestManager>();
+        _panelToShowNFTs = FindObjectOfType<Content>();
         _restManager.OnObtainingData += ObtainingData;
         _restManager.OnObtainError += ObtainError;
         _restManager.OnObtainNFT += ObtainNFT;
+        _panelToShowNFTs.updateContent += GetDataForNFT;
     }
 
     public void GetDataForNFT()
     {
-        StartCoroutine(_restManager.GetDataFromWeb());
+        _canUpdateContent = true;
+        if (_canUpdateContent)
+        {
+            StartCoroutine(_restManager.GetDataFromWeb());
+        }
+           
     }
 
     public void ObtainingData(bool obtaining)
     {
         Debug.Log("OBTAINING DATA: " + obtaining);
+        _canUpdateContent = !obtaining;
     }
 
     public void ObtainError(bool obtaining)

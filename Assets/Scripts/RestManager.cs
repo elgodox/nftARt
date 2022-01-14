@@ -23,13 +23,13 @@ public class RestManager : MonoBehaviour
         }
         else
         {
-            OnObtainingData.Invoke(false);
             var deserializer = new NFTJsonDeserializer();
             var rData = deserializer.Deserialize(www.downloadHandler.text);
             foreach (var item in rData.assets)
             {
                 OnObtainNFT.Invoke(item);
             }
+            OnObtainingData.Invoke(false);
         }
     }
 }
