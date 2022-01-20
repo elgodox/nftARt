@@ -5,16 +5,17 @@ using UnityEngine.Networking;
 
 public class RestManager : MonoBehaviour
 {
-     public Action<bool> OnObtainingData;
-     public Action<bool> OnObtainError;
-     public Action<Asset> OnObtainNFT;
+    public String uri;
+    public Action<bool> OnObtainingData;
+    public Action<bool> OnObtainError;
+    public Action<Asset> OnObtainNFT;
 
 
     public IEnumerator GetDataFromWeb()
     {
-        UnityWebRequest www = UnityWebRequest.Get("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20");
+        UnityWebRequest www = UnityWebRequest.Get(uri);
         OnObtainingData.Invoke(true);
-        
+
         yield return www.SendWebRequest();
 
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
@@ -31,6 +32,18 @@ public class RestManager : MonoBehaviour
             }
             OnObtainingData.Invoke(false);
         }
+    }
+
+    public IEnumerator GetDataFromLocal()
+    {
+        var deserializer = new NFTJsonDeserializer();
+        var rData = deserializer.Deserialize(Resources.Load("response_test").ToString());
+        foreach (var item in rData.assets)
+        {
+            OnObtainNFT.Invoke(item);
+        }
+        OnObtainingData.Invoke(false);
+        yield return default;
     }
 }
 

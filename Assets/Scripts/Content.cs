@@ -23,7 +23,6 @@ public class Content : MonoBehaviour
             if (_currentTime >= 0)
             {
                 _currentTime -= Time.deltaTime * 1;
-                Debug.Log(_currentTime);
             }
 
             if (_currentTime <= 0)

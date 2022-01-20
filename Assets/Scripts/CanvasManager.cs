@@ -11,6 +11,7 @@ public class CanvasManager : MonoBehaviour
 {
     public GameObject panelToShowNFTs;
     public Action<bool> onShowNFTs;
+    public bool isLocal;
     private bool _canUpdateContent;
     private Content _panelToShowNFTs;
     private RestManager _restManager;
@@ -32,7 +33,10 @@ public class CanvasManager : MonoBehaviour
         _canUpdateContent = true;
         if (_canUpdateContent)
         {
+            if(!isLocal)
             StartCoroutine(_restManager.GetDataFromWeb());
+            else
+            StartCoroutine(_restManager.GetDataFromLocal());
         }
            
     }
@@ -100,4 +104,5 @@ public class CanvasManager : MonoBehaviour
                 yield return nft.owner.textureProfile = ((DownloadHandlerTexture)request.downloadHandler).texture;
         }
     }
+
 }
