@@ -45,7 +45,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
                 if (spawnedObject == null)
                 {
-                    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+                    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, m_PlacedPrefab.transform.rotation);
                 }
                 else
                 {
