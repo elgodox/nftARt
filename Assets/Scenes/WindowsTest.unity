@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2722b1e15f6aabd4185093bbf6b2727d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uri: https://testnets-api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20
+  uri: https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20
 --- !u!4 &1218812383
 Transform:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelToShowNFTs: {fileID: 1917708213}
-  isLocal: 1
+  isLocal: 0
 --- !u!114 &1420330898
 MonoBehaviour:
   m_ObjectHideFlags: 0

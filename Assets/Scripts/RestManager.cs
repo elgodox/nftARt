@@ -14,6 +14,8 @@ public class RestManager : MonoBehaviour
     public IEnumerator GetDataFromWeb()
     {
         UnityWebRequest www = UnityWebRequest.Get(uri);
+        www.SetRequestHeader("Accept", "application/json");
+        www.SetRequestHeader("X-API-KEY", "ede9cdaa66d0421c995acc00fb40ec77");
         OnObtainingData.Invoke(true);
 
         yield return www.SendWebRequest();
@@ -46,4 +48,5 @@ public class RestManager : MonoBehaviour
         yield return default;
     }
 }
+
 

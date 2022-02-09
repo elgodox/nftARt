@@ -33,12 +33,12 @@ public class CanvasManager : MonoBehaviour
         _canUpdateContent = true;
         if (_canUpdateContent)
         {
-            if(!isLocal)
-            StartCoroutine(_restManager.GetDataFromWeb());
+            if (!isLocal)
+                StartCoroutine(_restManager.GetDataFromWeb());
             else
-            StartCoroutine(_restManager.GetDataFromLocal());
+                StartCoroutine(_restManager.GetDataFromLocal());
         }
-           
+
     }
 
     public void ObtainingData(bool obtaining)
@@ -59,32 +59,36 @@ public class CanvasManager : MonoBehaviour
 
     public IEnumerator ObtainData(Asset nft)
     {
-        yield return StartCoroutine(RequestTextureForNFT(nft));
-        yield return StartCoroutine(RequestTextureForOwnerProfile(nft));
-        if (nft.image_preview_url != null)
+        if (nft.image_url != "")
         {
-            if (nft.texture!=default)
+            yield return StartCoroutine(RequestTextureForNFT(nft));
+            yield return StartCoroutine(RequestTextureForOwnerProfile(nft));
+            if (nft.image_preview_url != null)
             {
-                _mockNFT = Resources.Load<MockNFT>("Prefabs/MockNFT");
-                _mockNFT.OnInstance(nft, panelToShowNFTs.transform);
-                yield break;
-            }
+                if (nft.texture != default)
+                {
+                    _mockNFT = Resources.Load<MockNFT>("Prefabs/MockNFT");
+                    _mockNFT.OnInstance(nft, panelToShowNFTs.transform);
+                    yield break;
+                }
 
+            }
         }
+        yield return null;
     }
 
     private IEnumerator RequestTextureForNFT(Asset nft)
     {
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(nft.image_url);
         yield return request.SendWebRequest();
-        if(request.result == UnityWebRequest.Result.ConnectionError|| (request.result == UnityWebRequest.Result.ProtocolError))
+        if (request.result == UnityWebRequest.Result.ConnectionError || (request.result == UnityWebRequest.Result.ProtocolError))
         {
             Debug.Log(request.error);
             yield break;
         }
         else
         {
-            if (request.downloadHandler.text.Contains("JPG")|| request.downloadHandler.text.Contains("PNG"))
+            if (request.downloadHandler.text.Contains("JPG") || request.downloadHandler.text.Contains("PNG"))
                 yield return nft.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
         }
     }
