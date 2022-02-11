@@ -12,7 +12,7 @@ public class CanvasARManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        yield return SceneManager.LoadSceneAsync("WindowsTest", LoadSceneMode.Additive);
+        yield return SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
 }

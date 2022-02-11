@@ -38,7 +38,7 @@ public class MaterialManager : MonoBehaviour
 
     IEnumerator LoadSceneAR()
     {
-        yield return SceneManager.LoadSceneAsync("SimpleAR", LoadSceneMode.Additive);
+        yield return SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
 }

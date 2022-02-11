@@ -209,7 +209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4378300152361609426}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4275894236378804899
 MonoBehaviour:
@@ -224,6 +224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _imageNFT: {fileID: 4734553199501008366}
+  _objectToShowOnAR: {fileID: 0}
+  _spawnedMaterial: {fileID: 0}
+  _texture: {fileID: 0}
 --- !u!1 &849729715156368010
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +382,7 @@ RectTransform:
   m_Children:
   - {fileID: 7250177047082479744}
   m_Father: {fileID: 4378300152361609426}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -611,86 +614,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rengoku #482
---- !u!1 &2450899534056224571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4483163011991991634}
-  - component: {fileID: 1659957925165648261}
-  - component: {fileID: 2489856292007741309}
-  m_Layer: 5
-  m_Name: nftPrice
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &4483163011991991634
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2450899534056224571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4378300152361609426}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.62333316, y: 0.31668922}
-  m_AnchorMax: {x: 1, y: 0.36968923}
-  m_AnchoredPosition: {x: -9.330017, y: -1.6999512}
-  m_SizeDelta: {x: -27.459991, y: -2.1500015}
-  m_Pivot: {x: 0.5, y: 1}
---- !u!222 &1659957925165648261
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2450899534056224571}
-  m_CullTransparentMesh: 1
---- !u!114 &2489856292007741309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2450899534056224571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 1
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 1
-    m_MaxSize: 60
-    m_Alignment: 5
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 100
+  m_Text: Squish #4993
 --- !u!1 &3266141598144901665
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +722,6 @@ RectTransform:
   - {fileID: 3481967013637845401}
   - {fileID: 5469188325992027379}
   - {fileID: 6172098395387362647}
-  - {fileID: 4483163011991991634}
   - {fileID: 3166333041320382027}
   - {fileID: 1844128548304591876}
   m_Father: {fileID: 0}
@@ -807,7 +730,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1440, y: 3040}
+  m_SizeDelta: {x: 1440, y: 2960}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2092593122204596955
 CanvasRenderer:
@@ -864,7 +787,7 @@ MonoBehaviour:
   creatorAddress: {fileID: 7617113921906238953}
   nftName: {fileID: 1458315396061895569}
   nftDescription: {fileID: 5714232102002491406}
-  nftTopBid: {fileID: 2450899534056224571}
+  nftTopBid: {fileID: 0}
   ownerImage: {fileID: 3266141598144901665}
 --- !u!1 &4309826269449354883
 GameObject:
@@ -1195,7 +1118,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: The Squishy Squad is a collection of 8,888 dangerously cute squishes that
+    live on the Ethereum blockchain. Each piece was thoroughly crafted, selectively
+    chosen, and beautifully coded for our incredible community. Each squish is cute,
+    goofy, and knows how to party like there's no tomorrow.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1222,7 +1148,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 60
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1356,7 +1282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rengoku-Legends-Official
+  m_Text: 
 --- !u!1 &7617113921906238953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +1361,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0xbca79a14246abb29a8f8ee88a46c2964950b13c4
+  m_Text: 0x75b2b74d007e089fc41a279a73f9445b69c9faa1
 --- !u!1 &9103056152240594450
 GameObject:
   m_ObjectHideFlags: 0

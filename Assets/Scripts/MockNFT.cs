@@ -22,7 +22,6 @@ public class MockNFT : MonoBehaviour, INFT
     private Text _creatorName;
     private Text _creatorAddress;
     private Text _nftName;
-    private Text _nftTopBid;
     private TextMeshProUGUI _nftDescription;
     private RawImage _ownerImage;
 
@@ -41,7 +40,6 @@ public class MockNFT : MonoBehaviour, INFT
         _creatorName = creatorName.GetComponent<Text>();
         _nftName = nftName.GetComponent<Text>();
         _creatorAddress = creatorAddress.GetComponent<Text>();
-        _nftTopBid = nftTopBid.GetComponent<Text>();
         _nftDescription = nftDescription.GetComponent<TextMeshProUGUI>();
         _ownerImage = ownerImage.GetComponent<RawImage>();
 
@@ -53,7 +51,6 @@ public class MockNFT : MonoBehaviour, INFT
         _creatorName.text = nft.creator.user.username;
         _creatorAddress.text = nft.creator.address;
         _nftName.text = nft.name;
-        _nftTopBid.text = "100";
         _nftDescription.text = RemoveBreaks(nft.description);
         _ownerImage.texture = nft.owner.textureProfile;
 
@@ -61,6 +58,7 @@ public class MockNFT : MonoBehaviour, INFT
         _imageHolderTransform.sizeDelta = size;
         _rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
     }
+
 
 
     private Vector2 ResizeImage(RawImage image)
